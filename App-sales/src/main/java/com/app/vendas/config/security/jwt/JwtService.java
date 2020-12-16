@@ -10,7 +10,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.stereotype.Service;
 
-import com.app.vendas.AppVendasApplication;
+import com.app.vendas.AppSalesApplication;
 import com.app.vendas.domain.User;
 
 import io.jsonwebtoken.Claims;
@@ -72,7 +72,7 @@ public class JwtService {
 	}
 	
 	public static void main(String[] args) {
-		ConfigurableApplicationContext context = SpringApplication.run(AppVendasApplication.class);
+		ConfigurableApplicationContext context = SpringApplication.run(AppSalesApplication.class);
 		JwtService service = context.getBean(JwtService.class);	
 		User user = User.builder().username("ALAN TURING").build();
 		String token = service.generateToken(user);

@@ -10,10 +10,10 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 
 
 @SpringBootApplication
-public class AppVendasApplication extends SpringBootServletInitializer{
+public class AppSalesApplication extends SpringBootServletInitializer{
 
 	public static void main(String[] args) {
-		SpringApplication.run(AppVendasApplication.class, args);
+		SpringApplication.run(AppSalesApplication.class, args);
 	}
 
 }
