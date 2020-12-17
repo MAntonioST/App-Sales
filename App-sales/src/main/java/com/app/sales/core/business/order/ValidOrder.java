@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.app.sales.core.IStrategy;
 import com.app.sales.core.application.Result;
 import com.app.sales.core.dao.Impl.CustomerDAO;
@@ -70,10 +69,12 @@ public class ValidOrder implements IStrategy<Order>{
 	        List<OrderItem> listItens = new ArrayList<OrderItem>();
 	        
 		    for(OrderItem orderList : orderOptional.get().getItems() ) {			           	
-	            OrderItem orderItem = new OrderItem();
-		        orderItem.setQuantity(orderList.getQuantity());
-		        orderItem.setProduct(orderList.getProduct());
-		        orderItem.setOrder(order);
+	            OrderItem orderItem = OrderItem
+					            	  .builder()
+					            	  .quantity(orderList.getQuantity())
+					            	  .product(orderList.getProduct())
+					            	  .order(order)
+					            	  .build();
 		        listItens.add(orderItem);		           		            
 	         }
 	                          	           
@@ -89,6 +90,7 @@ public class ValidOrder implements IStrategy<Order>{
 	public boolean isValid(List<OrderItem> list) {
 		return list != null && !list.isEmpty();
 	}
+	
 }
 
 
