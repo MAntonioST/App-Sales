@@ -46,19 +46,22 @@ public class ValidOrder implements IStrategy<Order>{
 	        	response.setMsg( "Código de cliente inválido");
 	        	return response;
 	        }
-	        Customer customer = new Customer();
-	        customer.setName(customerOptional.get().getName());
-	        customer.setCpf(customerOptional.get().getCpf());
-	        customer.setId(orderOptional.get().getCustomer().getId());
+	        Customer customer = Customer
+	        		.builder()
+	        		.name(customerOptional.get().getName())
+	        		.cpf(customerOptional.get().getCpf())
+	        		.id(orderOptional.get().getCustomer().getId())
+	                .build();
 	        
-	        Order order = new Order();
-	        order.setTotal(orderOptional.get().getTotal());
-	        order.setOrderDate(LocalDate.now());
-	        order.setCustomer(customer);    
-	        order.setStatus(OrderStatus.REALIZADO);
-	        
-	      
-	        
+	        Order order = Order
+	        		.builder()
+	        		.total(orderOptional.get().getTotal())
+	        		.OrderDate(LocalDate.now())
+	        		.customer(customer)
+	        		.status(OrderStatus.REALIZADO)
+	        		.build();
+	                
+	      	        
 	        if(!isValid(orderOptional.get().getItems())){           	
 	        	response.setMsg( "Não é possível realizar um pedido sem items.");
 		        return response;	         
